@@ -7,22 +7,22 @@ package instachatclient;
 
 import instachatrmi.InstaChatInterface;
 import java.rmi.Naming;
-import java.rmi.RMISecurityManager;
+import java.rmi.registry.LocateRegistry;
 
 /**
  *
  * @author Saurin
  */
 public class RMIConn {
-    String name = "Login";
+    String name = "10.0.0.29";
     InstaChatInterface stub;
     public RMIConn(){
-        String strName = "rmi://instachatrmi.InstaChatInterface/Login";
-        System.setProperty("java.security.policy","file:C:\\Users\\Saurin\\Documents\\NetBeansProjects\\InstaChatClient\\Client.policy");
-        System.setSecurityManager(new RMISecurityManager());
+        //String strName = "rmi://instachatrmi.InstaChatInterface/Login";
+        //System.setProperty("java.security.policy","file:C:\\Users\\Saurin\\Documents\\NetBeansProjects\\InstaChatClient\\Client.policy");
+        //System.setSecurityManager(new RMISecurityManager());
         
         try{
-            stub = (InstaChatInterface) Naming.lookup("Login");
+            stub = (InstaChatInterface) LocateRegistry.getRegistry(name).lookup("Login");
         }catch(Exception e){
             System.out.println("Client: Exception thrown looking up " + e);
         }
