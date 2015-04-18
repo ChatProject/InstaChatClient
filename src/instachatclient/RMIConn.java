@@ -14,7 +14,7 @@ import java.rmi.registry.LocateRegistry;
  * @author Saurin
  */
 public class RMIConn {
-    String name = "10.0.0.29";
+    String registryAddress = "71.1.116.167";
     InstaChatInterface stub;
     public RMIConn(){
         //String strName = "rmi://instachatrmi.InstaChatInterface/Login";
@@ -22,7 +22,8 @@ public class RMIConn {
         //System.setSecurityManager(new RMISecurityManager());
         
         try{
-            stub = (InstaChatInterface) LocateRegistry.getRegistry(name).lookup("Login");
+            stub = (InstaChatInterface) LocateRegistry.getRegistry(registryAddress).lookup("Login");
+            System.out.println("stub is " + stub);
         }catch(Exception e){
             System.out.println("Client: Exception thrown looking up " + e);
         }
